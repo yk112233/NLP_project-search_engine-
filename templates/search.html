@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="app">
+ 
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+  
+
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body ng-controller="ctrl" background="static/bk2.jpg" style=" background-repeat:no-repeat ; background-size:cover;background-attachment: fixed；>
+ 
+ <div class="picLUp">
+<div class="container">
+    <br>
+    <br>
+    <form class="form-inline" method="post" action="/">
+        <div class="form-group">
+            <input type="text" style="height: 40px; width: 360px;" class="form-control" ng-model="query"
+                   value="{{ value }}" name="query" id="query"/>
+        </div>
+        <input class="btn btn-small btn-success" role="button" type="submit" value="攻略搜一下" id="btn">
+    </form>
+    <br>
+    <br>共有{{ length }}条结果
+    <br>
+    <div id="box">
+    {% for doc in docs %}
+    <p><a href="{{ doc[0] }}" target="_blank">{{ doc[1]|safe }}</a></p>
+    <p>来源：{{ doc[0] }}</p>
+    <br>
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>
