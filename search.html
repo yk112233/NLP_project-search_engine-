@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="app">
+ 
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+
+<style type="text/css">
+p.midjpg{position:absolute;left:0px;top:0px;}
+p.midtxt1{position:absolute;left:140px;top:30px;}
+p.midtxt2{position:absolute;left:140px;top:70px;}
+p.midresult{position:absolute;top:90px;}
+    </style>
+
+
+</head>
+<body ng-controller="ctrl" background="{{ url_for('static', filename='bk3.jpg')}}" style=" background-repeat:no-repeat;background-size:100% 100%" >
+ 
+ <div class="picLUp">
+<div class="container" >
+    <p class="midjpg">
+    <img src="{{ url_for('static', filename='logo.jpg')}}" alt="logo" width="141" height="96" >
+    </p>
+
+    <br>
+    <br>
+    <form class="form-inline" method="post" action="/">
+        <div class="form-inline row">
+            <p class="midtxt1">
+            <input type="text"
+
+                   onmouseover="this.style.borderColor='red';this.style.backgroundColor='#ffffff'"
+                   style="height: 30px; width: 260px;border-radius:4px border:1px solid #c8cccf; color:#6a6f77;"
+                   onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"
+                   class="form-control" ng-model="query" value="{{ value }}" name="query" id="query"/>
+            <input class="btn btn-success" role="button" style="height: 30px; width: 100px;" type="submit" value="攻略搜一下" id="btn">
+        </p>
+        </div>
+    </form>
+     <p class="midtxt1">
+    <br>
+    <br>共有{{ length }}条结果
+         </p>
+    <br>
+    <br>
+    <br>
+    <div id="box">
+    {% for doc in docs %}
+    <p><a href="{{ doc[0] }}" target="_blank">{{ doc[1]|safe }}</a></p>
+    <p>来源：{{ doc[0] }}</p><p>分数：{{ doc[2] }}</p>
+    <br>
+    {% endfor %}
+</div>
+
+</div>
+     </div>
+</body>
+</html>
