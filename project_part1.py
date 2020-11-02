@@ -44,10 +44,11 @@ if __name__ == '__main__':
     likes = []
     comments = []
     collections = []
+    reads = []
     workbook = xlwt.Workbook(encoding='utf-8')
     worksheet = workbook.add_sheet('My Worksheet')
 
-    zzz = np.arange(1, 20)
+    zzz = np.arange(1, 2)
     left = 'https://so.csdn.net/so/search/s.do?q=NLP&t=blog&platform=pc&p='
     right = '&s=&tm=&v=&l=&u=&ft='
     yk_cnt = 0
@@ -73,21 +74,26 @@ if __name__ == '__main__':
             # 重点
             html = lxml.html.fromstring(b)
             # 获取标签下所有文本
+
             travel_neirong = html.xpath('//*[@id="article_content"]//text()')
             doc_like = html.xpath('//*[@id="spanCount"][@class="count"]//text()')
             doc_comment = html.xpath('//li[@class="tool-item tool-active tool-item-comment"]/a/span[@class="count"]//text()')
             doc_collection = html.xpath('//*[@id="get-collection"]//text()')
+            doc_read = html.xpath('//*[@class="read-count"]//text()')
             # 正则 匹配以下内容 \s+ 首空格 \s+$ 尾空格 \n 换行
             pattern = re.compile("^\s+|\s+$|\n")
             doc_like = re.sub(pattern, "", doc_like[0])
             doc_comment = re.sub(pattern, "", doc_comment[0])
             doc_collection = re.sub(pattern,"",doc_collection[0])
+            doc_read = doc_read[0]
             if len(doc_like) == 0:
                 doc_like = str(0)
             if len(doc_comment) == 0:
                 doc_comment = str(0)
             if len(doc_collection) == 0:
                 doc_collection = str(0)
+            if len(doc_read) == 0:
+                doc_read = str(0)
             print(doc_like, doc_comment, doc_collection)
             clause_text = ""
             for item in travel_neirong:
@@ -102,6 +108,7 @@ if __name__ == '__main__':
             likes.append(doc_like)
             comments.append(doc_comment)
             collections.append(doc_collection)
+            reads.append(doc_read)
             travel_name = html.xpath('//title/text()')
             titles.append(travel_name)
         for j in range(len(titles)):
@@ -115,6 +122,7 @@ if __name__ == '__main__':
             worksheet.write(yk_cnt, 5, str(likes[yk_cnt]))
             worksheet.write(yk_cnt, 6, str(comments[yk_cnt]))
             worksheet.write(yk_cnt, 7, str(collections[yk_cnt]))
+            worksheet.write(yk_cnt, 8, str(reads[yk_cnt]))
             yk_cnt += 1
             #print(yk_cnt)
             # 保存
