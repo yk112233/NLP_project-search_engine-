@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>搜索</title>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- Custom Theme files -->
+        <style type="text/css">
+p.midjpg{position:absolute;left:640px;top:50px;}
+p.midtxt{position:absolute;left:600px;top:200px;}
+    </style>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -15,14 +17,25 @@
           rel='stylesheet' type='text/css'>
     <!--Google Fonts-->
 </head>
-<body >
+<body background="{{ url_for('static', filename='bk1.jpg')}}" style=" background-repeat:no-repeat;background-size:1580px 800px;">
+
 <!--search start here-->
-<div class="search">
+<div class="container">
+    <p class="midjpg">
+    <img src="{{ url_for('static', filename='logo.jpg')}}" alt="logo" width="282" height="192" >
+    </p>
+<!--div class="search"-->
     <i> </i>
     <div class="s-bar">
         <form method="post">
-            <input type="text" name="query">
-            <input type="submit" value="搜索攻略"/>
+              <p class="midtxt">
+            <input type="text"
+                   style="height: 40px; width: 320px;border-radius:4px"
+                   name="query">
+            <input type="submit"
+                   style="height: 40px; width: 120px;border-radius:4px"
+                   value="搜索一下"/>
+             </p>
         </form>
     </div>
 
