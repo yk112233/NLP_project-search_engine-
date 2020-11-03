@@ -1,4 +1,3 @@
-
 from csv import reader
 import numpy as np
 import jieba
@@ -84,6 +83,14 @@ def get_comment(url):
         comments = jobj["data"]['list']
         for comment in comments:
             pinglun.append(deEnglish(comment['info']['content']))
+    # with open('pinglun.txt', 'a') as file_handle:
+    #     for i in pinglun:
+    #         file_handle.write(i)  # 写入
+    #         file_handle.write('\n')  # 有时放在循环里面需要自动转行，不然会覆盖上一条数据
+    # pinglun_txt = open('pinglun.txt', 'r', encoding="gbk").readlines()
+    # comment_sentence=[]
+    # for i in pinglun_txt:
+    #     comment_sentence.append(i)
     return pinglun
 
 def emotion(url):
