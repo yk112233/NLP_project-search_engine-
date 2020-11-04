@@ -48,7 +48,7 @@ if __name__ == '__main__':
     workbook = xlwt.Workbook(encoding='utf-8')
     worksheet = workbook.add_sheet('My Worksheet')
 
-    zzz = np.arange(1, 20)
+    zzz = np.arange(1, 2)
     left = 'https://so.csdn.net/so/search/s.do?q=NLP&t=blog&platform=pc&p='
     right = '&s=&tm=&v=&l=&u=&ft='
     yk_cnt = 0
@@ -113,7 +113,7 @@ if __name__ == '__main__':
             print(travel_name)
             titles.append(travel_name)
             print(len(titles))
-        for j in range(len(titles)):
+        for j in range(len(titles)-yk_cnt):
             # 写入excel
             # 参数对应 行, 列, 值
             worksheet.write(yk_cnt, 0, str(yk_cnt))
