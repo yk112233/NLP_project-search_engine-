@@ -102,6 +102,7 @@ class Searcher:
     def search(self, query):
         term_list = []
         query = query.split()
+        print(query)
         avgdl = sum(self.index.id_doc_len.values())/len(self.index.id_doc_len)
         for entry in query:
             # 分词
@@ -141,12 +142,7 @@ def search(query):
     start = time.time()
     docs = searcher.search(query)
     load_wv = KeyedVectors.load('word_vector')
-    word = query
-    res = load_wv.similar_by_word(word, topn=10)
     ans = []
-    for i in range(len(res)):
-        ans.append(res[i][0])
-    print(ans)
     # classofword_key = list(classofword.keys())
     # classofword_value = list(classofword.values())
     # conscores = np.zeros(len(classofword_key))
@@ -164,6 +160,12 @@ def search(query):
     end = time.time()
     print("time for search:", end-start)
     terms = list(jieba.cut_for_search(query))
+    for word in terms:
+        res = load_wv.similar_by_word(word,topn=5)
+        for i in res:
+            if len(i[0]) > 1:
+                ans.append(i[0])
+    print(ans)
     result = highlight(docs, terms)
     return render_template('search.html', docs=result, value=query, length=len(docs))
 
