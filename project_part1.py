@@ -48,7 +48,7 @@ if __name__ == '__main__':
     workbook = xlwt.Workbook(encoding='utf-8')
     worksheet = workbook.add_sheet('My Worksheet')
 
-    zzz = np.arange(1, 2)
+    zzz = np.arange(1, 20)
     left = 'https://so.csdn.net/so/search/s.do?q=NLP&t=blog&platform=pc&p='
     right = '&s=&tm=&v=&l=&u=&ft='
     yk_cnt = 0
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                 doc_collection = str(0)
             if len(doc_read) == 0:
                 doc_read = str(0)
-            print(doc_like, doc_comment, doc_collection)
+            #print(doc_like, doc_comment, doc_collection)
             clause_text = ""
             for item in travel_neirong:
                 # 将匹配到的内容用空替换，即去除匹配的内容，只留下文本
@@ -110,7 +110,9 @@ if __name__ == '__main__':
             collections.append(doc_collection)
             reads.append(doc_read)
             travel_name = html.xpath('//title/text()')
+            print(travel_name)
             titles.append(travel_name)
+            print(len(titles))
         for j in range(len(titles)):
             # 写入excel
             # 参数对应 行, 列, 值
@@ -124,6 +126,6 @@ if __name__ == '__main__':
             worksheet.write(yk_cnt, 7, str(collections[yk_cnt]))
             worksheet.write(yk_cnt, 8, str(reads[yk_cnt]))
             yk_cnt += 1
-            #print(yk_cnt)
+            print(yk_cnt)
             # 保存
     workbook.save('Excel_test.xls')
