@@ -10,6 +10,8 @@
 p.midjpg{position:absolute;left:0px;top:0px;}
 p.midtxt1{position:absolute;left:140px;top:10px;}
 p.midtxt2{position:absolute;left:140px;top:70px;}
+p.midtxt3{position:absolute;right:10px;top:10px;}
+p.midtxt4{position:absolute;right:10px;top:30px;}
 
 p.midresult{position:absolute;top:90px;}
     </style>
@@ -32,7 +34,7 @@ p.midresult{position:absolute;top:90px;}
             <input type="text"
 
                    onmouseover="this.style.borderColor='red';this.style.backgroundColor='#ffffff'"
-                   style="height: 30px; width: 260px;border-radius:4px border:1px solid #c8cccf; color:#6a6f77;"
+                   style="height: 30px; width: 260px;border-radius:4px; border:1px solid #c8cccf; color:#6a6f77;"
                    onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"
                    class="form-control" ng-model="query" value="{{ value }}" name="query" id="query"/>
             <input class="btn btn-success" role="button" style="height: 30px; width: 100px;" type="submit" value="搜索一下" id="btn">
@@ -42,12 +44,21 @@ p.midresult{position:absolute;top:90px;}
      <p class="midtxt1">
     <br>
     <br>共有<font color="#dd0000">{{ length }}</font>条结果
+
          </p>
+    <p class="midtxt3">你可能感兴趣的内容：<br></p>
+       <p class="midtxt4"> <font color="#238E23" style="font-family:隶书" size="5">{{ans[0]}}</font><br>
+        <font color="#856363" style="font-family:隶书 " size="5">{{ans[1]}}</font><br>
+        <font color="#DB7093" style="font-family:隶书" size="5">{{ans[2]}}</font><br>
+        <font color="#FF2400" style="font-family:隶书" size="5">{{ans[3]}}</font><br>
+        <font color="#4F2F4F" style="font-family:隶书" size="5">{{ans[4]}}</font>
+         </p>
+
     <br>
     <br>
     <p class="midtxt2">
         {% if flag==1 %}
-    您是否在搜索<strong><font color="#dd0000" style="font-family:隶书">{{taget}}</font></strong>
+    您是否在搜索<strong><font color="#dd0000" >{{target}}</font></strong>
       {% endif %}
         </p>
     <br>
@@ -55,7 +66,7 @@ p.midresult{position:absolute;top:90px;}
     {% for doc in docs %}
     <p><a href="{{ doc[0] }}" target="_blank">{{ doc[1]|safe }}</a></p>
 
-        <p>🎭：{{ doc[2] }} &nbsp ❤：{{doc[3]}} &nbsp 🗣：{{doc[4]}}  &nbsp 💌：{{doc[5]}}</p>
+        <p>😄：{{ doc[2] }} &nbsp ❤：{{doc[3]}} &nbsp 🗣：{{doc[4]}}  &nbsp 💌：{{doc[5]}}</p>
 
     <br>
     {% endfor %}
